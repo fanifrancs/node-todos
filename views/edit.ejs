@@ -1,0 +1,10 @@
+<%- include ('./partials/header') %> 
+        <div class="container">
+            <div>
+                <h1>todos</h1>
+                <form action="/edit/<%= foundTodo._id %>?_method=put" method="post">
+                    <input name="todo" value="<%= foundTodo.todo %>" type="text" required>
+                </form>
+            </div>
+        </div>
+<%- include ('./partials/footer') %> 

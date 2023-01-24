@@ -1,0 +1,23 @@
+<%- include ('./partials/header') %> 
+        <div class="container">
+            <div>
+                <h1>todos</h1>
+                <form action="/todos" method="post">
+                    <input name="todo" placeholder="Input todo" type="text" required>
+                </form>
+                <div class="todos">
+                    <% todos.forEach((todo) => { %>
+                        <li>
+                            <%= todo.todo %>
+                            <form class="todo-form" action="/edit/<%= todo._id %>" method="get">
+                                <button type="submit"><i class="fa-solid fa-pen-to-square"></i></button>
+                            </form>
+                            <form class="todo-form" action="/delete/<%= todo._id %>?_method=delete" method="post">
+                                <button type="submit"><i class="fa-solid fa-trash"></i></button>
+                            </form>
+                        </li>
+                    <% }) %>
+                </div>
+            </div>
+        </div>
+<%- include ('./partials/footer') %> 
