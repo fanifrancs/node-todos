@@ -20,16 +20,17 @@ input{
 }
 
 .todo-form{
-    display: inline;
+  display: inline;
 }
 
 button{
-    border: none;
+  border: none;
+  background-color: white;
 }
 
 i{
-    color: gray;
-    cursor: pointer;
+  color: gray;
+  cursor: pointer;
 }
 
 .container{
