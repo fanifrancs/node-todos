@@ -1,7 +1,6 @@
 const express      = require('express'),
 bodyParser         = require('body-parser'),
 mongoose           = require('mongoose'),
-methodOverride     = require('method-override'),
 expressSanitizer   = require('express-sanitizer'),
 app                = express();
 
@@ -10,7 +9,6 @@ require('dotenv').config();
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(expressSanitizer());
-app.use(methodOverride('_method'));
 app.set('view engine', 'ejs');
 
 const todoSchema = new mongoose.Schema({
@@ -62,7 +60,7 @@ app.get('/edit/:id', (req, res) => {
 })
 
 // handles todo edit
-app.put('/edit/:id', (req, res) => {
+app.post('/edit/:id', (req, res) => {
     req.sanitize(req.body.todo);
     const { todo } = req.body;
     Todo.findByIdAndUpdate(req.params.id, {todo}, (err, updatedTodo) => {
@@ -75,7 +73,7 @@ app.put('/edit/:id', (req, res) => {
 })
 
 // deletes todo
-app.delete('/delete/:id', (req, res) => {
+app.post('/delete/:id', (req, res) => {
     Todo.findByIdAndRemove(req.params.id, (err, deletedTodo) => {
         if (err) {
             res.send(errorMessage);
