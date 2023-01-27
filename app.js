@@ -5,7 +5,6 @@ expressSanitizer   = require('express-sanitizer'),
 app                = express();
 
 // configs
-require('dotenv').config();
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(expressSanitizer());
@@ -17,7 +16,7 @@ const todoSchema = new mongoose.Schema({
 
 const Todo = mongoose.model('Todo', todoSchema);
 
-const errorMessage = '<p>Something went wrong <a href="/"> Go home</a></p>';
+const errorMessage = '<p>Something went wrong <a href="/">Go home</a></p>';
 
 // root
 app.get('/', (req, res) => {
